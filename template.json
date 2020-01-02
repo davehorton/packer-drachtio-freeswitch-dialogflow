@@ -54,7 +54,7 @@
         "libhiredis-dev gperf libspandsp-dev default-libmysqlclient-dev htop dnsutils gdb \\",
         "gnupg2 wget pkg-config ca-certificates libjpeg-dev libsqlite3-dev libpcre3-dev \\",
         "libspeex-dev libspeexdsp-dev libedit-dev libtiff-dev yasm haveged \\",
-        "libopus-dev libsndfile-dev libshout3-dev libmpg123-dev libmp3lame-dev",
+        "libopus-dev libopusfile-dev libsndfile-dev libshout3-dev libmpg123-dev libmp3lame-dev",
         "sudo chmod a+w /usr/local/src"
       ]
     },

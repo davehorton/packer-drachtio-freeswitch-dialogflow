@@ -5,13 +5,13 @@ GRPC_VERSION=v1.24.2
 echo "freeswitch version being installed is ${VERSION}"
 echo "grpc version being installed is ${GRPC_VERSION}"
 
-sudo wget  --no-check-certificate  -O - https://files.freeswitch.org/repo/deb/debian-unstable/freeswitch_archive_g0.pub | apt-key add -
-echo "deb http://files.freeswitch.org/repo/deb/debian-unstable/ `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list.d/freeswitch.list
-echo "deb-src http://files.freeswitch.org/repo/deb/debian-unstable/ `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list.d/freeswitch.list
+# sudo wget  --no-check-certificate  -O - https://files.freeswitch.org/repo/deb/debian-unstable/freeswitch_archive_g0.pub | apt-key add -
+# echo "deb http://files.freeswitch.org/repo/deb/debian-unstable/ `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list.d/freeswitch.list
+# echo "deb-src http://files.freeswitch.org/repo/deb/debian-unstable/ `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list.d/freeswitch.list
 git config --global pull.rebase true
 cd /usr/local/src
 git clone https://github.com/davehorton/freeswitch.git -b ${VERSION}
-git clone https://github.com/warmcat/libwebsockets.git -b v3.2.0
+git clone https://github.com/warmcat/libwebsockets.git -b v3.2-stable
 git clone https://github.com/davehorton/drachtio-freeswitch-modules.git -b master
 git clone https://github.com/dpirch/libfvad.git
 git clone https://github.com/grpc/grpc -b ${GRPC_VERSION}
@@ -62,6 +62,7 @@ sudo cp /tmp/Makefile.am.grpc.patch .
 sudo cp /tmp/modules.conf.in.patch  ./build
 sudo cp /tmp/modules.conf.in.grpc.patch  ./build
 sudo cp /tmp/modules.conf.vanilla.xml.grpc ./conf/vanilla/autoload_configs/modules.conf.xml
+sudo cp /tmp/mod_opusfile.c.patch ./src/mod/formats/mod_opusfile
 
 sudo patch < configure.ac.patch 
 sudo patch < configure.ac.grpc.patch 
@@ -70,6 +71,8 @@ sudo patch < Makefile.am.grpc.patch
 cd build
 sudo patch < modules.conf.in.patch
 sudo patch < modules.conf.in.grpc.patch
+cd ../src/mod/formats/mod_opusfile
+sudo patch < mod_opusfile.c.patch
 
 # build freeswitch
 cd /usr/local/src/freeswitch
