@@ -1,7 +1,7 @@
 <drachtio>
 
     <!-- udp port to listen on for client connections and shared secret used to authenticate clients -->
-    <admin port="9022" secret="cymru">0.0.0.0xs</admin>
+    <admin port="9022" secret="cymru">0.0.0.0</admin>
 
     <sip>
         <contacts>

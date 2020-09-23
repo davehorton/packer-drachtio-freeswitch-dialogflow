@@ -6,7 +6,8 @@
     "ssh_username": "admin",
     "ami_description": "dialogflow telephony gateway using drachtio and freeswitch", 
     "instance_type": "t2.medium",
-    "drachtio_version": "v0.8.3"
+    "drachtio_version": "v0.8.6",
+    "dialogflow_gateway_branch": "master"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -24,7 +25,7 @@
     },
     "instance_type": "{{user `instance_type`}}",
     "ssh_username": "{{user `ssh_username`}}",
-    "ami_name": "drachtio-freeswitch-dialogflow-phone-gateway-{{isotime |clean_ami_name}}",
+    "ami_name": "drachtio-freeswitch-dialogflow-phone-gateway-{{isotime |clean_resource_name}}",
     "ami_description": "{{user `ami_description`}}", 
     "launch_block_device_mappings": [
       {
